@@ -1,0 +1,61 @@
+/* Styles globaux de base - Le reste est géré par Tailwind CSS via CDN */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  background-color: #f3f4f6; /* Un gris clair pour le fond général */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Styles pour s'assurer que le root prend toute la hauteur si besoin */
+html, body, #root {
+  min-height: 100vh; /* Assure que le conteneur root peut s'étendre */
+  display: flex; /* Permet au footer de se positionner en bas si le contenu est court */
+  flex-direction: column;
+}
+
+#root {
+  flex-grow: 1; /* Fait en sorte que le contenu principal pousse le footer vers le bas */
+}
+
+/* Vous pouvez ajouter d'autres styles CSS personnalisés ici si nécessaire, */
+/* mais essayez de privilégier les classes Tailwind autant que possible. */
+
+/* Correction pour les tooltips qui pourraient être coupés s'ils sont trop larges */
+.tooltip-container {
+  position: relative; /* Nécessaire pour le positionnement absolu du tooltip */
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: 200px; /* Ajustez selon besoin */
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 8px;
+  position: absolute;
+  z-index: 10;
+  bottom: 125%; /* Position au-dessus de l'élément */
+  left: 50%;
+  margin-left: -100px; /* Moitié de la largeur pour centrer */
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: normal; /* Permet le retour à la ligne */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.tooltip-container:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Pour les champs numériques, éviter les flèches par défaut si elles interfèrent avec le style */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield; /* Firefox */
+}
